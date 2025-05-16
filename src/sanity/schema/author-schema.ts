@@ -1,4 +1,4 @@
-import { defineType } from "sanity";
+import { defineField, defineType } from "sanity";
 
 export const authorSchema = defineType({
   name: "author",
@@ -11,6 +11,20 @@ export const authorSchema = defineType({
       type: "string",
     },
     // TODO: Add image field
+    {
+      name: "image",
+      title: "Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: "alt",
+          type: "string",
+        }),
+      ],
+    },
     {
       name: "bio",
       title: "Bio",
