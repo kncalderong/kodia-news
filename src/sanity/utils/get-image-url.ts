@@ -6,5 +6,5 @@ import { client } from "../client";
 const builder = createImageUrlBuilder(client);
 
 export const getImageUrl = (source: SanityImageSource) => {
-  return builder.image(source).auto("format").fit("max").url();
+  return builder.image(source).auto("format").fit("max");
 };
