@@ -8,16 +8,23 @@ export const metadata: Metadata = {
   description: "Kodia News Portal Challenge",
 };
 
+import { Outfit } from "next/font/google";
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: "300",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="w-full bg-dark-blue text-white">
+    <html lang="en" className={outfit.className}>
+      <body className="w-full bg-dark-blue text-white flex flex-col lg:flex-row min-h-screen">
         <Navbar />
-        {children}
+        <div className="grow">{children}</div>
       </body>
     </html>
   );
