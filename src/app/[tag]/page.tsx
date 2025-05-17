@@ -16,7 +16,6 @@ export default async function Tag(props: {
   const query = searchParams?.query || "";
   const params = await props.params;
   const tag = params?.tag || "";
-  console.log("tag", tag);
 
   return (
     <main className="container flex justify-center p-4  md:p-6 lg:p-8">
