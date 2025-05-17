@@ -3,7 +3,7 @@ import { SanityDocument } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ArticleElement({
+export default async function ArticleElement({
   article,
 }: {
   article: SanityDocument;
@@ -38,6 +38,16 @@ export default function ArticleElement({
       >
         {article.title}
       </Link>
+    </article>
+  );
+}
+
+export function ArticleSkeleton() {
+  return (
+    <article className="text-gray flex flex-col gap-1">
+      <div className="block w-full h-[200px] md:h-[224px] lg:h-[250px] relative rounded-lg overflow-hidden bg-semi-dark-blue animate-pulse"></div>
+      <div className="text-sm h-4 bg-semi-dark-blue animate-pulse rounded-lg"></div>
+      <div className="text-white h-4 w-full rounded-lg animate-pulse bg-semi-dark-blue"></div>
     </article>
   );
 }
