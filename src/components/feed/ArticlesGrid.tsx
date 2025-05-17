@@ -2,30 +2,39 @@ import { client } from "@/sanity/client";
 import { SanityDocument } from "next-sanity";
 import ArticleElement, { ArticleSkeleton } from "./ArticleElement";
 
-const searchQuery = (term: string) => {
-  const query = `*[_type == "article" ${
-    term
-      ? `&&
-  (
-    title match $term ||
-    description match $term ||
-    author->name match $term ||
-    tags[]->title match $term
-  )`
-      : ""
-  }]{
-  ...,
-  author->{
-    name
-  },
-}`;
+const searchQuery = (term: string, tagParam: string) => {
+  let query = `*[_type == "article"`;
+  if (term) {
+    query += ` && (
+      title match $term ||
+      description match $term ||
+      author->name match $term 
+    )`;
+  }
+  if (tagParam) {
+    query += ` && tags[]->name match $tagParam`;
+  }
+  query += `]{
+    ...,
+    author->{
+      name
+    },
+  }`;
   return query;
 };
 
-export default async function ArticlesGrid({ query }: { query: string }) {
-  const SEARCH_QUERY = searchQuery(query);
+export default async function ArticlesGrid({
+  query,
+  tag = "",
+}: {
+  query: string;
+  tag: string;
+}) {
+  const SEARCH_QUERY = searchQuery(query, tag);
+
   const articles = await client.fetch<SanityDocument[]>(SEARCH_QUERY, {
     term: `${query}*`,
+    tagParam: `${tag}*`,
   });
 
   return (
