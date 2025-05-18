@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import Navbar from "@/components/navigation/Navbar";
 
 export const metadata: Metadata = {
   title: "Kodia News",
@@ -22,10 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={outfit.className}>
-      <body className="w-full bg-dark-blue text-white flex flex-col lg:flex-row min-h-screen">
-        <Navbar />
-        <div className="grow">{children}</div>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

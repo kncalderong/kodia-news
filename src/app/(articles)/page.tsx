@@ -11,7 +11,6 @@ export default async function Home(props: {
 }) {
   const searchParams = await props.searchParams;
   const query = searchParams?.query || "";
-
   return (
     <main className="container flex justify-center p-4  md:p-6 lg:p-8">
       <div className="flex flex-col gap-4 w-full md:gap-6 lg:gap-8">
