@@ -24,7 +24,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     : null;
 
   return (
-    <main className="container flex flex-col justify-center p-4 gap-4 md:p-6 lg:p-8 ">
+    <main className="container flex flex-col justify-center p-4 gap-4 md:p-6 lg:p-8 my-8 lg:my-12">
       <h1 className="text-3xl font-bold">{article.title}</h1>
       <div className="text-gray flex items-center justify-between">
         <div>
@@ -58,7 +58,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <div className="flex flex-col gap-4">
         {article.content?.length > 0 &&
           article.content.map((content: any) => {
-            return <p key={content._key}>{content.children[0]?.text}</p>;
+            return (
+              <p key={content._key} className="lg:text-lg">
+                {content.children[0]?.text}
+              </p>
+            );
           })}
       </div>
     </main>

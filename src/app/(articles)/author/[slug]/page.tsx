@@ -21,20 +21,17 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
     : null;
 
   return (
-    <main className="container grid grid-cols-1 md:grid-cols-2 p-4 gap-4 md:p-6 lg:p-8 ">
+    <main className="container grid grid-cols-1 md:grid-cols-2 p-4 gap-4 md:p-6 lg:p-8 my-8 lg:my-12">
       <div className=" w-full flex flex-col gap-4">
         <h1 className="text-3xl font-bold">{author.name}</h1>
-        <div className="text-gray">{author.bio}</div>
+        <div className="text-gray lg:text-lg">{author.bio}</div>
         {author.work?.length > 0 && (
           <>
             <h3 className="text-lg">More by this author:</h3>
             <div className="flex flex-col gap-2">
               {author.work?.map((article: any) => (
                 <div key={article._id} className="text-gray">
-                  <Link
-                    href={`/article/${article._id}`}
-                    className="hover:underline"
-                  >
+                  <Link href={`/article/${article._id}`} className="underline">
                     {article.title}
                   </Link>
                 </div>
