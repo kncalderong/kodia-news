@@ -17,7 +17,8 @@ const searchQuery = (term: string, tagParam: string) => {
   query += `]{
     ...,
     author->{
-      name
+      name,
+      _id,
     },
   }`;
   return query;

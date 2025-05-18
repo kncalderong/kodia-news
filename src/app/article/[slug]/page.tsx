@@ -11,7 +11,8 @@ type ArticlePageProps = {
 const ARTICLE_QUERY = `*[_type == "article" && _id == $slug][0]{
 ...,
 author->{
-  name
+  name,
+  _id,
   }
 }`;
 
@@ -28,7 +29,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <div className="text-gray flex items-center justify-between">
         <div>
           <span>By: </span>
-          <Link href="/" className="ml-1 hover:underline">
+          <Link
+            href={`/author/${article.author?._id}`}
+            className="ml-1 hover:underline"
+          >
             {article.author?.name}
           </Link>
         </div>
@@ -46,7 +50,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <div className="block w-full h-[400px] relative rounded-lg overflow-hidden ">
         <Image
           src={articleImageURL || "https://placehold.co/550x310/png"}
-          alt={article.name || article.image?.caption || ""}
+          alt={article.image?.caption || article.name || ""}
           fill
           className="object-cover"
         />

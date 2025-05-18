@@ -28,7 +28,10 @@ export default async function ArticleElement({
       </Link>
       <div className="text-sm">
         <span>By: </span>
-        <Link href="/" className="ml-1 hover:underline">
+        <Link
+          href={`/author/${article.author?._id}`}
+          className="ml-1 hover:underline"
+        >
           {article.author?.name}
         </Link>
       </div>
