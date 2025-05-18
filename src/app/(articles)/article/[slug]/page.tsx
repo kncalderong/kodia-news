@@ -20,7 +20,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params;
   const article = await client.fetch(ARTICLE_QUERY, { slug });
   const articleImageURL = article.image
-    ? getImageUrl(article.image).url()
+    ? getImageUrl(article.image).width(1600).url()
     : null;
 
   return (
@@ -49,10 +49,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       </div>
       <div className="block w-full h-[400px] relative rounded-lg overflow-hidden ">
         <Image
+          priority={true}
           src={articleImageURL || "https://placehold.co/550x310/png"}
           alt={article.image?.caption || article.name || ""}
           fill
-          className="object-cover"
+          className="object-cover transition-opacity duration-500 ease-in-out"
+          sizes="(max-width: 768px) 100vw, 1440px"
         />
       </div>
       <div className="flex flex-col gap-4">
