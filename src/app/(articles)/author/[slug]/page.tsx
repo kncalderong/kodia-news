@@ -7,6 +7,11 @@ type AuthorPageProps = {
   params: Promise<{ slug: string }>;
 };
 
+type WorkElement = {
+  title: string;
+  _id: string;
+};
+
 // TODO: Bring author details
 const AUTHOR_QUERY = `*[_type == "author" && _id == $slug][0]{
   ...,
@@ -29,7 +34,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
           <>
             <h3 className="text-lg">More by this author:</h3>
             <div className="flex flex-col gap-2">
-              {author.work?.map((article: any) => (
+              {author.work?.map((article: WorkElement) => (
                 <div key={article._id} className="text-gray">
                   <Link href={`/article/${article._id}`} className="underline">
                     {article.title}
