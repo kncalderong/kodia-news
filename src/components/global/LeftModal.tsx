@@ -35,7 +35,7 @@ const LeftModal: React.FC<LeftModalProps> = ({
           isOpen ? "translate-x-0" : "-translate-x-[101%]"
         )}
       >
-        <div className="flex flex-col h-full gap-6 px-4 py-5 bg-semi-dark-blueborder-r-gray-200 md:py-8 md:px-6 ">
+        <div className="flex flex-col h-full gap-6 px-4 py-5 bg-semi-dark-blue border-r-gray-200 md:py-8 md:px-6 ">
           <div
             className={classNames(
               "flex items-center w-full",
