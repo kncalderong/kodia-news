@@ -57,13 +57,19 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       </div>
       <div className="flex flex-col gap-4">
         {article.content?.length > 0 &&
-          article.content.map((content: any) => {
-            return (
-              <p key={content._key} className="lg:text-lg">
-                {content.children[0]?.text}
-              </p>
-            );
-          })}
+          article.content.map(
+            (content: {
+              _key: string;
+              _type: string;
+              children: { text: string }[];
+            }) => {
+              return (
+                <p key={content._key} className="lg:text-lg">
+                  {content.children[0]?.text}
+                </p>
+              );
+            }
+          )}
       </div>
     </main>
   );
