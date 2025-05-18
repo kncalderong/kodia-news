@@ -1,4 +1,4 @@
-import { Newspaper, User } from "lucide-react";
+import { Newspaper, Tags, User } from "lucide-react";
 import { StructureBuilder, StructureResolver } from "sanity/structure";
 
 export const structure: StructureResolver = (S: StructureBuilder) => {
@@ -13,6 +13,15 @@ export const structure: StructureResolver = (S: StructureBuilder) => {
             .title("Articles")
             .filter("_type == $type")
             .params({ type: "article" })
+        ),
+      S.listItem()
+        .title("Tags")
+        .icon(Tags)
+        .child(
+          S.documentList()
+            .title("Tags")
+            .filter("_type == $type")
+            .params({ type: "tag" })
         ),
       S.divider(),
       S.listItem()
